@@ -21,6 +21,7 @@ public class InfraredSensor implements EV3Sensor {
 		this.infraredSample = new float[infraredAverage.sampleSize()];
 	}
 	
+	@Override
 	public float getSample() {
 		infraredAverage.fetchSample(infraredSample, 0);
 		return infraredSample[0];
