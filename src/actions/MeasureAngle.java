@@ -29,10 +29,9 @@ public class MeasureAngle extends Thread {
 				Search.distanceFurthest = stereoDistance[Side.RIGHT];
 				Search.headAngleFurthest = headMotorAngle;
 			}
-
-			Screen.writeText(String.format("%.2f %.2f", stereoDistance[Side.LEFT], stereoDistance[Side.RIGHT]), 0, 3);
-
 			Search.headAngle = HeadMotor.getAngle();
 		}
+		Screen.writeText(String.format("%.2f %.2f", stereoDistance[Side.LEFT], stereoDistance[Side.RIGHT]), 0, 3);
+
 	}
 }

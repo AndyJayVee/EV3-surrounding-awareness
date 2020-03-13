@@ -10,8 +10,10 @@ public class DistanceSensor {
 	private static float minStereoSample;
 	private static float maxStereoSample;
 	private static float[] stereoDistance = new float[2];
-	private static float minDistance = 0.5f;
-	private static float maxDistance = 2.5f;
+	private static float minDistanceLeft;
+	private static float maxDistanceLeft;
+	private static float minDistanceRight;
+	private static float maxDistanceRight;
 	private static EV3Sensor distanceSensorLeft;
 	private static EV3Sensor distanceSensorRight;
 	
@@ -20,6 +22,10 @@ public class DistanceSensor {
 	public DistanceSensor() {
 		distanceSensorLeft = MyEV3.distanceSensorLeft;
 		distanceSensorRight = MyEV3.distanceSensorRight;
+		minDistanceLeft = distanceSensorLeft.getMinimum();
+		maxDistanceLeft = distanceSensorLeft.getMaximum();
+		minDistanceRight = distanceSensorRight.getMinimum();
+		maxDistanceRight = distanceSensorRight.getMaximum();
 	}
 
 	public float[] CalibrateSensors() {
@@ -35,11 +41,11 @@ public class DistanceSensor {
 		stereoDistance[Side.LEFT] = getLeftSample();
 		stereoDistance[Side.RIGHT] = getRightSample();
 		
-		if (stereoDistance[Side.LEFT] < minDistance) {
+		if (stereoDistance[Side.LEFT] == minDistanceLeft || stereoDistance[Side.LEFT] == maxDistanceLeft) {
 			stereoDistance[Side.LEFT] = stereoDistance[Side.RIGHT];
 		}
 
-		if (stereoDistance[Side.RIGHT] > maxDistance) {
+		if (stereoDistance[Side.RIGHT] == minDistanceRight || stereoDistance[Side.RIGHT] == maxDistanceRight) {
 			stereoDistance[Side.RIGHT] = stereoDistance[Side.LEFT];
 		}
 		return stereoDistance;
