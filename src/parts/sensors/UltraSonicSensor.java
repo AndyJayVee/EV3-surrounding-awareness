@@ -21,8 +21,19 @@ public class UltraSonicSensor implements EV3Sensor{
 		this.ultraSonicSample = new float[ultraSonicAverage.sampleSize()];
 	}
 	
+	@Override
 	public float getSample() {
 		ultraSonicAverage.fetchSample(ultraSonicSample, 0);
 		return ultraSonicSample[0];
+	}
+
+	@Override
+	public float getMinimum() {
+		return 0f;
+	}
+
+	@Override
+	public float getMaximum() {
+		return Float.POSITIVE_INFINITY;
 	}
 }

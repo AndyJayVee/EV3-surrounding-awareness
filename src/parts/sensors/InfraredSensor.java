@@ -25,4 +25,14 @@ public class InfraredSensor implements EV3Sensor {
 		infraredAverage.fetchSample(infraredSample, 0);
 		return infraredSample[0];
 	}
+	
+	@Override
+	public float getMinimum() {
+		return 0f;
+	}
+
+	@Override
+	public float getMaximum() {
+		return Float.POSITIVE_INFINITY;
+	}
 }
